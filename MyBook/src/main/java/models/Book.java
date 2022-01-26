@@ -1,6 +1,12 @@
+package models;
+
+import models.Author;
+import services.Visitee;
+import services.Visitor;
+
 import java.util.ArrayList;
 
-public class Book {
+public class Book implements Visitee {
     private String title;
     private ArrayList<Element> elements;
     private ArrayList<Author> authors;
@@ -19,15 +25,20 @@ public class Book {
         this.authors.add(author);
     }
 
-    public void print() {
-        System.out.println("Carte: " + this.title);
+    public String getTitle() {
+        return title;
+    }
 
-        System.out.println("Autori: ");
-        for (Author i : this.authors)
-            i.print();
+    public ArrayList<Element> getElements() {
+        return elements;
+    }
 
-        System.out.println("Elemente: ");
-        for (Element i : this.elements)
-            i.print();
+    public ArrayList<Author> getAuthors() {
+        return authors;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitBook(this);
     }
 }

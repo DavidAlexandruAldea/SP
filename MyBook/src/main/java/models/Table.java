@@ -1,4 +1,9 @@
-public class Table implements Element {
+package models;
+
+import services.Visitee;
+import services.Visitor;
+
+public class Table implements Element, Visitee {
     private String title;
 
     public Table(String title) {
@@ -9,8 +14,8 @@ public class Table implements Element {
         this.title = table.title;
     }
 
-    public void print() {
-        System.out.println(this.title);
+    public String getTitle() {
+        return title;
     }
 
     @Override
@@ -21,5 +26,10 @@ public class Table implements Element {
     @Override
     public void remove(Element element) {
         //not needed
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitTable(this);
     }
 }

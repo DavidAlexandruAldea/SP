@@ -1,4 +1,10 @@
-public class Paragraph implements Element {
+package models;
+
+import services.AlignStrategy;
+import services.Visitee;
+import services.Visitor;
+
+public class Paragraph implements Element, Visitee {
     private String text;
     private AlignStrategy alignStrategy;
 
@@ -10,12 +16,12 @@ public class Paragraph implements Element {
         this.text = paragraph.text;
     }
 
-    public void print() {
-        if (this.alignStrategy != null) {
-            this.alignStrategy.render(this, null);
-        }
-        else
-            System.out.println("Paragraph" + this.text);
+    public String getText() {
+        return text;
+    }
+
+    public AlignStrategy getAlignStrategy() {
+        return alignStrategy;
     }
 
     @Override
@@ -30,5 +36,10 @@ public class Paragraph implements Element {
 
     public void setAlign(AlignStrategy align) {
         this.alignStrategy = align;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitParagraph(this);
     }
 }

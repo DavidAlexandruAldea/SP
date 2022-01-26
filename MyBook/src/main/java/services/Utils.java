@@ -1,3 +1,7 @@
+package services;
+
+import models.*;
+
 public class Utils {
     public static Element checkAndReturnCopy(Element element) {
         if (element instanceof Section)

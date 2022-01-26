@@ -1,6 +1,13 @@
+package models;
+
+import services.ImageLoaderFactory;
+import services.ImageLoader;
+import services.Visitee;
+import services.Visitor;
+
 import java.util.concurrent.TimeUnit;
 
-public class Image implements Element, Picture {
+public class Image implements Element, Picture, Visitee {
     private String imageName;
     private Dimension dim = new Dimension(400,400);
 
@@ -20,12 +27,12 @@ public class Image implements Element, Picture {
         this.imageName = image.imageName;
     }
 
-    public void loadContent() throws Exception {
-        lodaer = ImageLoaderFactory.create(imageName);
+    public String getImageName() {
+        return imageName;
     }
 
-    public void print() {
-        System.out.println(this.imageName);
+    public void loadContent() throws Exception {
+        lodaer = ImageLoaderFactory.create(imageName);
     }
 
     @Override
@@ -46,5 +53,10 @@ public class Image implements Element, Picture {
     @Override
     public Dimension dim() {
         return this.dim;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitImage(this);
     }
 }
