@@ -1,3 +1,5 @@
+package models;
+
 public class Dimension {
     private int height;
     private int width;
@@ -8,6 +10,6 @@ public class Dimension {
     }
 
     public void print() {
-        System.out.println("Dimension :" + height + "," + width);
+        System.out.println("models.Dimension :" + height + "," + width);
     }
 }

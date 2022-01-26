@@ -1,4 +1,9 @@
-public class ImageProxy implements Element, Picture {
+package models;
+
+import services.Visitee;
+import services.Visitor;
+
+public class ImageProxy implements Element, Picture, Visitee {
     private String url;
     private Dimension dim = new Dimension(300, 300);
     private Image img;
@@ -13,14 +18,15 @@ public class ImageProxy implements Element, Picture {
         this.img = imageProxy.img;
     }
 
-    @Override
-    public void print() {
-        System.out.println("Image proxy with url:" + url + " and dimension:" + dim);
-
-        loadImage().print();
+    public String getUrl() {
+        return url;
     }
 
-    private Image loadImage() {
+    public Dimension getDim() {
+        return dim;
+    }
+
+    public Image loadImage() {
         if (this.img == null) {
             this.img = new Image(url);
         }
@@ -51,5 +57,10 @@ public class ImageProxy implements Element, Picture {
     @Override
     public Dimension dim() {
         return null;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitImageProxy(this);
     }
 }
