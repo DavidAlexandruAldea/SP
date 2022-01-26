@@ -23,10 +23,9 @@ public class Section implements Element {
         this.elements.add(element);
     }
 
-//    @Override
-//    public void add(Section section) throws Exception {
-//        this.elements.append(section.elements);
-//    }
+    public void addWithoutCopy(Element elementToBeAdded) throws Exception {
+        this.elements.add(elementToBeAdded);
+    }
 
     @Override
     public void remove(Element element) {
