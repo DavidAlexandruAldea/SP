@@ -2,25 +2,17 @@ import java.util.ArrayList;
 
 public class Book {
     private String title;
-    private ArrayList<Chapter> chapters;
+    private ArrayList<Element> elements;
     private ArrayList<Author> authors;
-    private TableOfContents toc;
 
     public Book(String title) {
         this.title = title;
-        this.chapters = new ArrayList<Chapter>();
+        this.elements = new ArrayList<Element>();
         this.authors = new ArrayList<Author>();
-        this.toc = new TableOfContents();
     }
 
-    public int addChapter (String chapter) {
-        this.chapters.add(new Chapter(chapter));
-
-        return this.chapters.size() - 1;
-    }
-
-    public Chapter getChapterByIndex (int index) {
-        return this.chapters.get(index);
+    public void addContent (Element element) {
+        this.elements.add(element);
     }
 
     public void addAuthor (Author author) {
@@ -28,14 +20,14 @@ public class Book {
     }
 
     public void print() {
-        System.out.println("Carte" + this.title);
-        this.toc.print();
+        System.out.println("Carte: " + this.title);
 
         System.out.println("Autori: ");
         for (Author i : this.authors)
             i.print();
 
-        for (Chapter i : this.chapters)
+        System.out.println("Elemente: ");
+        for (Element i : this.elements)
             i.print();
     }
 }

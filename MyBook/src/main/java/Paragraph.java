@@ -8,4 +8,23 @@ public class Paragraph implements Element {
     public void print() {
         System.out.println(this.text);
     }
+
+    @Override
+    public void add(Element element) {
+        //not needed
+    }
+
+    @Override
+    public void remove(Element element) {
+        //not needed
+    }
+
+    @Override
+    public boolean find(Element element) {
+        if (!(element instanceof Paragraph))
+            return false;
+        else {
+            return ((Paragraph) element).text.equals(this.text);
+        }
+    }
 }
